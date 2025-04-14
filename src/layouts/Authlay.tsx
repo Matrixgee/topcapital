@@ -43,7 +43,7 @@ const AuthLayout = () => {
         }`}
       >
         <p className="text-center text-gray-400 text-sm py-4">
-          Copyright © {new Date().getFullYear()} BLOCKCRYPTO. All Rights
+          Copyright © {new Date().getFullYear()} TOPCAPITALMINING. All Rights
           Reserved.
         </p>
       </div>

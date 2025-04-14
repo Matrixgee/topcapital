@@ -80,7 +80,7 @@ const Hero = () => {
           </motion.button>
           <motion.button
             className="px-8 py-4 rounded-lg bg-white/10 text-white font-semibold text-lg border border-white/20 backdrop-blur-sm"
-            onClick={() => nav("/packages")}
+            onClick={() => nav("/auth/login")}
             variants={buttonVariants}
             whileHover={{
               scale: 1.05,
