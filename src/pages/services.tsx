@@ -122,17 +122,7 @@ const Services = () => {
           className="mt-20 text-center"
           data-aos="fade-up"
           data-aos-delay="200"
-        >
-          <motion.div
-            className="inline-block bg-gradient-to-r from-purple-600 to-indigo-600 p-0.5 rounded-xl"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <button className="px-8 py-4 bg-gray-900 rounded-lg text-white font-semibold text-lg">
-              Explore All Service Features
-            </button>
-          </motion.div>
-        </div>
+        ></div>
       </div>
     </div>
   );
