@@ -114,7 +114,7 @@ const Login = () => {
             Don't have an account?{" "}
             <a
               href="#"
-              onClick={() => navigate("/register")}
+              onClick={() => navigate("/auth/register")}
               className="text-purple-300 hover:text-purple-200 font-medium"
             >
               Sign Up
