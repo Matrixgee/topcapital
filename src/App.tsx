@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
 import { Routes } from "./Routes/routes";
+import logo from "./assets/toplogo.png";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -47,7 +48,7 @@ const App = () => {
     wakeUpServer();
 
     // Fallback timer in case the fetch never resolves or takes too long
-    const maxWaitTime = 60000; // Reduced to 60 seconds from 120 seconds
+    const maxWaitTime = 30000; // Reduced to 60 seconds from 120 seconds
     const timer = setTimeout(() => {
       console.warn("Maximum wait time reached, proceeding anyway");
       setLoading(false);
@@ -59,16 +60,15 @@ const App = () => {
   if (loading) {
     return (
       <div className="w-full h-screen bg-[#25063b] flex flex-col items-center justify-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[#635a9a] mb-4"></div>
+        <div className=" rounded-full h-16 w-16  mb-4">
+          <img src={logo} alt="" />
+        </div>
         <p className="text-gray-300 text-lg">
           {status === "connecting"
             ? "Loading Application"
             : status === "error"
             ? "Still trying to connect..."
             : "Loading application..."}
-        </p>
-        <p className="text-gray-400 text-sm mt-2">
-          This may take a moment if the server is spinning up
         </p>
       </div>
     );
