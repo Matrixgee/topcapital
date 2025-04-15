@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
-// import logo from "../assets/dan 1.svg";
+import logo from "../assets/topcap.svg";
 import { MdClose, MdMenu } from "react-icons/md";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -18,13 +18,12 @@ const Header = () => {
   const nav = useNavigate();
 
   return (
-    <div className="w-full h-[12vh] bg-gradient-to-b from-[#0A0A0A] to-[#1A0B2E] flex justify-around items-center">
-      <div className="w-[20%] h-full flex justify-center items-center max-md:w-[60%]">
+    <div className="w-full h-[12vh] bg-gradient-to-b from-[#0A0A0A] to-[#0c011a] flex justify-around items-center">
+      <div className="w-[30%] md:w-[25%] bg-red-500 flex justify-start items-center">
         <img
-          src=""
+          src={logo}
           alt="Logo"
-          className="w-full h-full object-contain"
-          //
+          className="w-full h-full max-w-[150px] md:max-w-[200px] object-contain"
         />
       </div>
       <div className="w-[60%] h-full flex justify-around items-center max-md:hidden max-lg:hidden">
