@@ -7,6 +7,7 @@ import {
   X,
   BanknoteArrowDown,
   Boxes,
+  ScrollText,
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/toplogo.png";
@@ -29,19 +30,20 @@ const Sidebar = ({
   return (
     <>
       <div
-        className={`bg-black text-white h-full overflow-y-scroll scrollbar-hide w-64 p-4 flex flex-col justify-between fixed top-0 left-0 z-40 transition-transform transform md:translate-x-0 ${
+        className={`bg-[#240338] text-white h-full   w-64 p-4 flex flex-col justify-between fixed top-0 left-0 z-40 transition-transform transform md:translate-x-0 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:static md:block`}
       >
         {/* Top - Logo and Nav */}
         <div className="p-4">
-          <div className="mb-2 flex px-4 py-2 bg-amber-300 items-center justify-between">
-            <div className="flex items-center gap-3">
+          <div className="mb-2 flex px-4 py-2  items-center justify-between">
+            <div className="flex items-center">
               <img
                 src={logo}
                 alt=""
                 className="w-full  max-w-[3rem] h-[80%] object-contain"
               />
+              <p>Top Capital Mining</p>
             </div>
             <button
               className="md:hidden w-8 h-8 rounded-md border border-gray-700 flex justify-center items-center hover:bg-gray-800 transition-colors"
@@ -57,14 +59,14 @@ const Sidebar = ({
               <p className="text-gray-400 uppercase mb-3 text-xs font-medium px-3">
                 Main
               </p>
-              <div className="space-y-1">
+              <div className="space-y-1 text-sm">
                 <NavItem
-                  to="/overview"
+                  to="/user/overview"
                   icon={<Home size={18} />}
                   label="Overview"
                 />
                 <NavItem
-                  to="/deposit"
+                  to="/user/deposit"
                   icon={<BanknoteArrowUp size={18} />}
                   label="Deposit"
                 />
@@ -77,6 +79,11 @@ const Sidebar = ({
                   to="/user/packages"
                   icon={<Boxes size={18} />}
                   label="Packages"
+                />
+                <NavItem
+                  to="/user/history"
+                  icon={<ScrollText size={18} />}
+                  label="Plans"
                 />
                 <NavItem
                   to="/user/history"

@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <div className="w-full h-[12vh] bg-gradient-to-b from-[#0A0A0A] to-[#0c011a] flex justify-around items-center">
-      <div className="w-[30%] md:w-[25%] bg-red-500 flex justify-start items-center">
+      <div className="w-[30%] md:w-[25%] flex justify-start items-center">
         <img
           src={logo}
           alt="Logo"
