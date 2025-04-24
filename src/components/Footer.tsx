@@ -12,7 +12,10 @@ const Footer = () => {
           <img src="" alt="Company Logo" className="w-40 h-auto" />
           <div>
             <h2 className="font-bold text-xl mb-2">Location HQ</h2>
-            <p className="text-gray-400"> 200 Park Avenue, New York, NY</p>
+            <p className="text-gray-400">
+              {" "}
+              Davis Farm Dr NW Kenneshaw, Georgia
+            </p>
             <a
               href="mailto:defiskyspace@gmail.com"
               className="text-gray-400 hover:text-white transition-colors"

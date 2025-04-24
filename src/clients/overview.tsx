@@ -2,6 +2,7 @@
 import { FaInfoCircle, FaCopy, FaLink } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import TradingViewWidget from "../components/Tradingviewidget";
 
 const Overview = () => {
   // interface RootState {
@@ -37,8 +38,8 @@ const Overview = () => {
     <div className="w-full h-[calc(100vh-5rem)] p-6 overflow-y-scroll scrollbar-thin scrollbar-hide ">
       {/* Welcome Message */}
       <div className="mb-8">
-        <p className="text-gray-100">Welcome! ,</p>
-        <h1 className="text-3xl font-bold text-gray-100">
+        <p className="text-gray-800">Welcome! ,</p>
+        <h1 className="text-3xl font-bold text-gray-400">
           {/* {user.firstName} {user?.lastName} */}
         </h1>
         <p className="text-gray-500">
@@ -58,7 +59,7 @@ const Overview = () => {
         ].map((card, index) => (
           <div
             key={index}
-            className="bg-purple-600 text-white p-4 rounded-lg flex flex-col gap-2"
+            className="bg-[#FAFFEF] text-black p-4 rounded-lg flex flex-col gap-2"
           >
             <div className="flex items-center justify-between">
               <h3 className="text-lg">{card.title}</h3>
@@ -70,7 +71,7 @@ const Overview = () => {
       </div>
 
       <div className="w-full h-[30rem] flex justify-center items-center p-5 mb-4">
-        {/* <TradingViewWidget /> */}
+        <TradingViewWidget />
       </div>
 
       {/* Detailed Balance Info */}

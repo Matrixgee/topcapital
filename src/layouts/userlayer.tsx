@@ -11,7 +11,7 @@ const Userlayer = () => {
   };
 
   return (
-    <div className="h-screen w-screen max-w-[100vw] bg-gradient-to-b from-[#2A0F3D] to-[#1A0825]  max-h-[100vh] overflow-hidden flex">
+    <div className="h-screen w-screen max-w-[100vw]   max-h-[100vh] overflow-hidden flex">
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       <div className=" flex flex-col max-w-6xl mx-auto  w-full">
