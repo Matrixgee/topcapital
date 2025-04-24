@@ -10,6 +10,8 @@ import Userlayer from "../layouts/userlayer";
 import Overview from "../clients/overview";
 import Deposit from "../clients/deposit";
 import Withdraw from "../clients/withdraw";
+import Packages from "../clients/packages";
+import Plans from "../clients/plans";
 
 export const Routes = createBrowserRouter([
   {
@@ -61,6 +63,14 @@ export const Routes = createBrowserRouter([
       {
         path: "withdraw",
         element: <Withdraw />,
+      },
+      {
+        path: "packages",
+        element: <Packages />,
+      },
+      {
+        path: "plans",
+        element: <Plans />,
       },
     ],
   },

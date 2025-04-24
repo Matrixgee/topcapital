@@ -18,6 +18,7 @@ type NavItemProps = {
   label: string;
   active?: boolean;
   badge?: number;
+  onClick?: () => void;
 };
 
 const Sidebar = ({
@@ -43,7 +44,6 @@ const Sidebar = ({
                 alt=""
                 className="w-full  max-w-[3rem] h-[80%] object-contain"
               />
-              <p>Top Capital Mining</p>
             </div>
             <button
               className="md:hidden w-8 h-8 rounded-md border border-gray-700 flex justify-center items-center hover:bg-gray-800 transition-colors"
@@ -64,31 +64,37 @@ const Sidebar = ({
                   to="/user/overview"
                   icon={<Home size={18} />}
                   label="Overview"
+                  onClick={onClose}
                 />
                 <NavItem
                   to="/user/deposit"
                   icon={<BanknoteArrowUp size={18} />}
                   label="Deposit"
+                  onClick={onClose}
                 />
                 <NavItem
                   to="/user/withdraw"
                   icon={<BanknoteArrowDown size={18} />}
                   label="Withdrawal"
+                  onClick={onClose}
                 />
                 <NavItem
                   to="/user/packages"
                   icon={<Boxes size={18} />}
                   label="Packages"
+                  onClick={onClose}
                 />
                 <NavItem
-                  to="/user/history"
+                  to="/user/plans"
                   icon={<ScrollText size={18} />}
                   label="Plans"
+                  onClick={onClose}
                 />
                 <NavItem
                   to="/user/history"
                   icon={<Repeat size={18} />}
                   label="History"
+                  onClick={onClose}
                 />
               </div>
             </div>
@@ -102,6 +108,7 @@ const Sidebar = ({
                   to="/settings"
                   icon={<Settings size={18} />}
                   label="Settings"
+                  onClick={onClose}
                 />
               </div>
             </div>
@@ -136,14 +143,22 @@ const Sidebar = ({
   );
 };
 
-const NavItem = ({ to, icon, label, active = false, badge }: NavItemProps) => {
+const NavItem = ({
+  to,
+  icon,
+  label,
+  onClick,
+  active = false,
+  badge,
+}: NavItemProps) => {
   return (
     <NavLink
       to={to}
+      onClick={onClick}
       className={({ isActive }) =>
         `flex items-center gap-3 px-4 py-2.5 rounded-lg ${
           isActive || active
-            ? "bg-gray-900 text-yellow-400 font-medium"
+            ? "bg-[#3E0E7C] text-yellow-400 font-medium"
             : "text-gray-300 hover:bg-gray-900/60 hover:text-yellow-400 transition-all"
         } group relative`
       }

@@ -221,7 +221,7 @@ const Deposit = () => {
               <button
                 className={`w-full mt-6 py-3 rounded-md text-white font-medium transition ${
                   agree && amount
-                    ? "bg-[#050c1b] hover:bg-[#365baa]"
+                    ? "bg-[#3E0E7C] hover:bg-yellow-400"
                     : "bg-gray-400 cursor-not-allowed"
                 }`}
                 disabled={!agree || !amount}
@@ -317,7 +317,7 @@ const Deposit = () => {
           </div>
 
           <button
-            className="w-full mt-8 py-3 bg-[#050c1b] hover:bg-[#4872ce] flex justify-center items-center text-white font-medium rounded-md transition"
+            className="w-full mt-8 py-3 bg-[#3E0E7C] hover:bg-yellow-500 flex justify-center items-center text-white font-medium rounded-md transition"
             onClick={HandleDeposit}
           >
             {loading ? <ImSpinner9 className="animate-spin" /> : "Paid"}
@@ -332,7 +332,7 @@ const Deposit = () => {
 
       {/* Confirmation Modal */}
       {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 p-4">
+        <div className="fixed inset-0 flex items-center justify-center bg-black opacity-100 z-50 p-4">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
             <h3 className="text-xl font-semibold text-center mb-4">
               Confirm Your Payment
@@ -342,7 +342,7 @@ const Deposit = () => {
             </p>
             <div className="space-y-3">
               <button
-                className="w-full py-2.5 bg-[#050c1b] hover:bg-[#355db3] text-white rounded-md transition"
+                className="w-full py-2.5 bg-[#3E0E7C] hover:bg-yellow-500 text-white rounded-md transition"
                 onClick={() => {
                   setShowModal(false);
                   setShowPaymentPage(true);

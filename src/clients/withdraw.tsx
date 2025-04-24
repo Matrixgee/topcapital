@@ -1,6 +1,6 @@
 const Withdraw = () => {
   return (
-    <div className="w-full  h-full overflow-y-scroll flex items-center flex-col px-10 max-md:px-4 py-16 max-md:flex max-md:justify-center max-md:items-center ">
+    <div className="w-full h-[calc(100vh-5rem)]  overflow-y-scroll flex items-center flex-col px-10 max-md:px-4 py-16 max-md:flex max-md:justify-center max-md:items-center ">
       <div className="w-1/2 max-md:w-full h-max bg-white rounded px-20 max-md:px-5 py-10 flex flex-col gap-5 items-center">
         <p className="text-2xl font-semibold text-[rgb(54,74,99)] text-center phone:text-xl">
           Request New Withdrawal
@@ -38,7 +38,7 @@ const Withdraw = () => {
             placeholder="Enter wallet address here..."
           />
         </div>
-        <button className="w-full h-14 bg-purple-600 transition-all duration-300 hover:bg-[#0238ac] text-white rounded text-sm font-semibold">
+        <button className="w-full h-14 bg-[#3E0E7C] transition-all duration-300 hover:bg-yellow-500 text-white rounded text-sm font-semibold">
           WITHDRAW
         </button>
       </div>
