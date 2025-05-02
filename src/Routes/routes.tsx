@@ -12,6 +12,9 @@ import Deposit from "../clients/deposit";
 import Withdraw from "../clients/withdraw";
 import Packages from "../clients/packages";
 import Plans from "../clients/plans";
+import Adminlayout from "../layouts/adminlayout";
+import Allusers from "../Admin/allusers";
+import AllTransactions from "../Admin/alltransactions";
 
 export const Routes = createBrowserRouter([
   {
@@ -71,6 +74,20 @@ export const Routes = createBrowserRouter([
       {
         path: "plans",
         element: <Plans />,
+      },
+    ],
+  },
+  {
+    path: "admin",
+    element: <Adminlayout />,
+    children: [
+      {
+        path: "allusers",
+        element: <Allusers />,
+      },
+      {
+        path: "alltransactions",
+        element: <AllTransactions />,
       },
     ],
   },

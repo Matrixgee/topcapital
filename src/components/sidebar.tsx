@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/toplogo.png";
+import { useLocation } from "react-router-dom";
 
 type NavItemProps = {
   to: string;
@@ -28,6 +29,9 @@ const Sidebar = ({
   isOpen: boolean;
   onClose: () => void;
 }) => {
+  const location = useLocation();
+  const isAdmin = location.pathname.includes("/admin");
+
   return (
     <>
       <div
@@ -55,63 +59,89 @@ const Sidebar = ({
           </div>
 
           <nav className="space-y-6">
-            <div>
-              <p className="text-gray-400 uppercase mb-3 text-xs font-medium px-3">
-                Main
-              </p>
-              <div className="space-y-1 text-sm">
-                <NavItem
-                  to="/user/overview"
-                  icon={<Home size={18} />}
-                  label="Overview"
-                  onClick={onClose}
-                />
-                <NavItem
-                  to="/user/deposit"
-                  icon={<BanknoteArrowUp size={18} />}
-                  label="Deposit"
-                  onClick={onClose}
-                />
-                <NavItem
-                  to="/user/withdraw"
-                  icon={<BanknoteArrowDown size={18} />}
-                  label="Withdrawal"
-                  onClick={onClose}
-                />
-                <NavItem
-                  to="/user/packages"
-                  icon={<Boxes size={18} />}
-                  label="Packages"
-                  onClick={onClose}
-                />
-                <NavItem
-                  to="/user/plans"
-                  icon={<ScrollText size={18} />}
-                  label="Plans"
-                  onClick={onClose}
-                />
-                <NavItem
-                  to="/user/history"
-                  icon={<Repeat size={18} />}
-                  label="History"
-                  onClick={onClose}
-                />
-              </div>
-            </div>
+            {isAdmin ? (
+              <>
+                <p className="text-gray-400 uppercase mb-3 text-xs font-medium px-3">
+                  Admin
+                </p>
+                <div className="space-y-1 text-sm">
+                  <NavItem
+                    to="/admin/allusers"
+                    icon={<Home size={18} />}
+                    label="Users"
+                    onClick={onClose}
+                  />
+                  <NavItem
+                    to="/admin/alltransactions"
+                    icon={<BanknoteArrowUp size={18} />}
+                    label="Deposits"
+                    onClick={onClose}
+                  />
+                  {/* <NavItem
+                    to="/admin/withdrawals"
+                    icon={<BanknoteArrowDown size={18} />}
+                    label="Withdrawals"
+                    onClick={onClose}
+                  /> */}
+                </div>
+              </>
+            ) : (
+              <>
+                <p className="text-gray-400 uppercase mb-3 text-xs font-medium px-3">
+                  Main
+                </p>
+                <div className="space-y-1 text-sm">
+                  <NavItem
+                    to="/user/overview"
+                    icon={<Home size={18} />}
+                    label="Overview"
+                    onClick={onClose}
+                  />
+                  <NavItem
+                    to="/user/deposit"
+                    icon={<BanknoteArrowUp size={18} />}
+                    label="Deposit"
+                    onClick={onClose}
+                  />
+                  <NavItem
+                    to="/user/withdraw"
+                    icon={<BanknoteArrowDown size={18} />}
+                    label="Withdrawal"
+                    onClick={onClose}
+                  />
+                  <NavItem
+                    to="/user/packages"
+                    icon={<Boxes size={18} />}
+                    label="Packages"
+                    onClick={onClose}
+                  />
+                  <NavItem
+                    to="/user/plans"
+                    icon={<ScrollText size={18} />}
+                    label="Plans"
+                    onClick={onClose}
+                  />
+                  <NavItem
+                    to="/user/history"
+                    icon={<Repeat size={18} />}
+                    label="History"
+                    onClick={onClose}
+                  />
+                </div>
 
-            <div>
-              <p className="text-gray-400 uppercase mb-3 text-xs font-medium px-3">
-                Account
-              </p>
-              <div className="space-y-1">
-                <NavItem
-                  to="/settings"
-                  icon={<Settings size={18} />}
-                  label="Settings"
-                  onClick={onClose}
-                />
-              </div>
-            </div>
+                <p className="text-gray-400 uppercase mb-3 text-xs font-medium px-3">
+                  Account
+                </p>
+                <div className="space-y-1">
+                  <NavItem
+                    to="/settings"
+                    icon={<Settings size={18} />}
+                    label="Settings"
+                    onClick={onClose}
+                  />
+                </div>
+              </>
+            )}
           </nav>
         </div>
 
