@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import InputField from "../components/inputfield";
+import axios from "../config/axiosconfig";
+import toast from "react-hot-toast";
 
 interface Country {
   country: string;
@@ -11,6 +13,7 @@ interface RegisterFormData {
   firstName: string;
   lastName: string;
   email: string;
+  userName: string;
   password: string;
   confirmPassword: string;
   phoneNumber: string;
@@ -24,6 +27,7 @@ const Register = () => {
   const [formData, setFormData] = useState<RegisterFormData>({
     firstName: "",
     lastName: "",
+    userName: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -112,30 +116,44 @@ const Register = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!validateForm()) {
-      return;
-    }
+    if (!validateForm()) return;
 
     setLoading(true);
 
+    const {
+      firstName,
+      lastName,
+      email,
+      userName,
+      password,
+      phoneNumber,
+      country,
+      confirmPassword,
+    } = formData;
+
+    const fullName = `${firstName} ${lastName}`;
+    const data = {
+      fullName: fullName,
+      email,
+      userName,
+      password,
+      confirmPassword: confirmPassword,
+      phone: phoneNumber,
+      country,
+    };
+
+    const loadingToast = toast.loading("Please wait...");
     try {
-      // Replace with your actual registration logic
-      // const response = await registerUser(formData);
-      // if (response.success) {
-      //   navigate("/verify-email");
-      // } else {
-      //   setErrors({ email: response.message });
-      // }
-
-      // Placeholder for demo purposes
-      setTimeout(() => {
-        navigate("/verify-email");
-        setLoading(false);
-      }, 1500);
-    } catch (err) {
-      console.log(err);
-
-      setErrors({ email: "Registration failed. Please try again." });
+      const response = await axios.post("/user/signup", data);
+      console.log("Registration Response:", response.data);
+      toast.success("Registration Successful!");
+      navigate("/auth/login");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.error("Registration error:", error);
+      toast.error(error.response?.data?.message || "Registration failed");
+    } finally {
+      toast.dismiss(loadingToast);
       setLoading(false);
     }
   };
@@ -185,6 +203,17 @@ const Register = () => {
                 onChange={(value) => handleChange("email", value)}
                 required
                 error={errors.email}
+              />
+            </div>
+            <div className="md:col-span-2">
+              <InputField
+                label="User Name"
+                type="text"
+                placeholder="Enter your UserName"
+                value={formData.userName}
+                onChange={(value) => handleChange("userName", value)}
+                required
+                error={errors.userName}
               />
             </div>
 

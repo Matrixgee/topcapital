@@ -5,27 +5,7 @@ import { useNavigate } from "react-router-dom";
 import TradingViewWidget from "../components/Tradingviewidget";
 
 const Overview = () => {
-  // interface RootState {
-  //   user: {
-  //     user: {
-  //       firstName: string;
-  //       lastName: string;
-  //       balance: string;
-  //       totalProfit: string;
-  //       totalBonus: string;
-  //       referralBonus: string;
-  //       totalInvestment: string;
-  //       activePlan: string;
-  //       totalDeposit: string;
-  //       totalWithdraw: string;
-  //     };
-  //   };
-  // }
-
-  // const user = useSelector((state: RootState) => state.user.user);
   const referralLink = "https://www.fiamining.com/ref/";
-
-  // console.log(user);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(referralLink);
@@ -34,28 +14,28 @@ const Overview = () => {
 
   const navigate = useNavigate();
 
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+
   return (
     <div className="w-full h-[calc(100vh-5rem)] p-6 overflow-y-scroll scrollbar-thin scrollbar-hide ">
       {/* Welcome Message */}
       <div className="mb-8">
-        <p className="text-gray-800">Welcome! ,</p>
-        <h1 className="text-3xl font-bold text-gray-400">
-          {/* {user.firstName} {user?.lastName} */}
+        <p className="text-gray-800 font-semibold">Welcome! ,</p>
+        <h1 className="text-3xl font-bold text-gray-400 uppercase mb-2">
+          {user?.fullName || "Guest"}
         </h1>
         <p className="text-gray-500">
           At a glance summary of your investment account. Have fun!
         </p>
-        <div className="w-full h-[20%] mt-4 flex justify-center items-center ">
-          {/* <TradingViewWidgettwo /> */}
-        </div>
       </div>
 
       {/* Top Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         {[
-          { title: "Available Balance", amount: `$ ` },
-          { title: "Total Invested", amount: `$ ` },
-          { title: "Total Profits", amount: `$ ` },
+          { title: "Available Balance", amount: ` $${user.accountBalance} ` },
+          { title: "Total Deposit", amount: `$${user.totalDeposit} ` },
+          { title: "Total Profits", amount: `$${user.totalProfit} ` },
+          { title: "Total Interest", amount: `$${user.totalInterest} ` },
         ].map((card, index) => (
           <div
             key={index}
@@ -70,7 +50,7 @@ const Overview = () => {
         ))}
       </div>
 
-      <div className="w-full h-[30rem] flex justify-center items-center p-5 mb-4">
+      <div className="w-full h-[30rem] flex justify-center items-center mb-4">
         <TradingViewWidget />
       </div>
 

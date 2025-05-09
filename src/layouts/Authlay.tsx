@@ -1,9 +1,7 @@
-import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
-import Logo from "../assets/toplogo.png"; // Adjust the path as necessary
 
 const AuthLayout = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const [animateIn, setAnimateIn] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -23,7 +21,7 @@ const AuthLayout = () => {
   useEffect(() => {
     // Preload the logo image
     const img = new Image();
-    img.src = Logo;
+
     img.onload = () => setImageLoaded(true);
 
     // Start animation after a short delay to ensure smooth transition
@@ -33,10 +31,6 @@ const AuthLayout = () => {
 
     return () => clearTimeout(timer);
   }, []);
-
-  const goToHome = () => {
-    navigate("/");
-  };
 
   return (
     <div className="w-full min-h-[100dvh] bg-gradient-to-b from-[#2A0F3D] to-[#1A0825] flex justify-between items-center flex-col py-6 relative overflow-hidden">
@@ -48,27 +42,12 @@ const AuthLayout = () => {
 
       {/* Logo Header */}
       <div
-        className={`w-full max-w-md px-4 transition-all duration-700 ease-out transform ${
+        className={`w-full max-w-md px-4  transition-all  duration-700 ease-out transform ${
           animateIn && imageLoaded
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-8"
         }`}
-      >
-        <div
-          className="flex justify-center items-center cursor-pointer"
-          onClick={goToHome}
-          aria-label="Go to homepage"
-        >
-          <div className="w-52 h-[2%] bg-red-500">
-            <img
-              src={Logo}
-              alt="TopCapitalMining Logo"
-              className=" object-contain"
-              onLoad={() => setImageLoaded(true)}
-            />
-          </div>
-        </div>
-      </div>
+      ></div>
 
       {/* Page Title */}
       <div
