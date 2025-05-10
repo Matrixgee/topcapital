@@ -15,6 +15,7 @@ import Plans from "../clients/plans";
 import Adminlayout from "../layouts/adminlayout";
 import Allusers from "../Admin/allusers";
 import AllTransactions from "../Admin/alltransactions";
+import History from "../clients/history";
 
 export const Routes = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ export const Routes = createBrowserRouter([
       {
         path: "plans",
         element: <Plans />,
+      },
+      {
+        path: "history",
+        element: <History />,
       },
     ],
   },
