@@ -58,17 +58,17 @@ const ContactUs = () => {
     {
       icon: <FaMapMarkerAlt />,
       title: "Our Location",
-      details: "200 Park Avenue, 17th Floor, New York, NY 10166, USA",
+      details: " Davis Farm Dr NW Kenneshaw, Georgia, USA",
     },
     {
       icon: <FaPhoneAlt />,
       title: "Phone Number",
-      details: "+1 (800) 555-1234",
+      details: "+12248588466",
     },
     {
       icon: <FaEnvelope />,
       title: "Email Address",
-      details: "support@topsignalmining.com",
+      details: "topcapitalmining@gmail.com",
     },
     {
       icon: <FaClock />,
@@ -318,7 +318,7 @@ const ContactUs = () => {
               viewport={{ once: true }}
             >
               {/* Placeholder for map - In a real implementation, you would use Google Maps or similar */}
-              <div className="h-80 bg-gray-800 rounded-xl overflow-hidden mb-8 border border-gray-700">
+              {/* <div className="h-80 bg-gray-800 rounded-xl overflow-hidden mb-8 border border-gray-700">
                 <div className="w-full h-full bg-gray-800 flex items-center justify-center">
                   <div className="text-center">
                     <FaMapMarkerAlt className="text-3xl text-purple-500 mx-auto mb-3" />
@@ -330,7 +330,7 @@ const ContactUs = () => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               {/* Additional contact information */}
               <div className="bg-gray-900/70 backdrop-blur-md p-8 rounded-xl border border-gray-800">
@@ -451,7 +451,7 @@ const ContactUs = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:+18005551234"
+                href="tel:+12248588466"
                 className="px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg transition-all duration-300 flex items-center justify-center"
               >
                 <FaPhoneAlt className="mr-3" />

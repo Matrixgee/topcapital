@@ -20,7 +20,7 @@ const Footer = () => {
               href="mailto:defiskyspace@gmail.com"
               className="text-gray-400 hover:text-white transition-colors"
             >
-              support@topcapitalmining.com
+              topcapitalmining@gmail.com
             </a>
           </div>
         </div>
