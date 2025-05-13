@@ -151,7 +151,7 @@ const Register = () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error("Registration error:", error);
-      toast.error(error.response?.data?.message || "Registration failed");
+      toast.error(error.response?.data?.error || "Registration failed");
     } finally {
       toast.dismiss(loadingToast);
       setLoading(false);

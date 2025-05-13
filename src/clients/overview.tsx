@@ -1,16 +1,16 @@
 // import { useSelector } from "react-redux";
-import { FaInfoCircle, FaCopy, FaLink } from "react-icons/fa";
-import toast from "react-hot-toast";
+import { FaInfoCircle } from "react-icons/fa";
+
 import { useNavigate } from "react-router-dom";
 import TradingViewWidget from "../components/Tradingviewidget";
 
 const Overview = () => {
-  const referralLink = "https://www.fiamining.com/ref/";
+  // const referralLink = "https://www.fiamining.com/ref/";
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(referralLink);
-    toast.success("Referral link copied!");
-  };
+  // const copyToClipboard = () => {
+  //   navigator.clipboard.writeText(referralLink);
+  //   toast.success("Referral link copied!");
+  // };
 
   const navigate = useNavigate();
 
@@ -62,7 +62,7 @@ const Overview = () => {
             Balance in Account
           </h3>
           <h2 className="text-3xl font-bold text-gray-900 mt-2">
-            {/* $ {user.balance} */}
+            $ {user.accountBalance}
           </h2>
 
           <button
@@ -74,20 +74,14 @@ const Overview = () => {
         </div>
 
         {/* Confirmed Deposits */}
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h3 className="text-lg font-semibold text-gray-700">
-            Confirmed Deposits
-          </h3>
+        {/* <div className="bg-white p-6 rounded-lg shadow-md">
+          <h3 className="text-lg font-semibold text-gray-700">Referal Bonus</h3>
           <h2 className="text-3xl font-bold text-gray-900 mt-2">
-            {/* ${user.totalBonus} */}
+            $ {user.referralBonus}
           </h2>
           <hr className="my-4" />
-          <p className="text-gray-600 flex justify-between">
-            {/* <span>Bonus</span> <span>${user.totalBonus}</span> */}
-          </p>
-          <p className="text-gray-600 flex justify-between">
-            {/* <span>Referral Bonus</span> <span>${user.referralBonus}</span> */}
-          </p>
+          <p className="text-gray-600 flex justify-between"></p>
+          <p className="text-gray-600 flex justify-between"></p>
 
           <p className="text-sm text-gray-600 text-center mt-2">
             Earn up to 10% referral commission. Refer a friend now!
@@ -98,10 +92,10 @@ const Overview = () => {
           >
             Deposit Funds
           </button>
-        </div>
+        </div> */}
 
         {/* My Investment */}
-        <div className="bg-white p-6 rounded-lg shadow-md">
+        {/* <div className="bg-white p-6 rounded-lg shadow-md">
           <h3 className="text-lg font-semibold text-gray-700">My Investment</h3>
           <h2 className="text-3xl font-bold text-gray-900 mt-2">${} - Total</h2>
           <hr className="my-4" />
@@ -112,11 +106,11 @@ const Overview = () => {
           >
             Investment
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* Referral Section */}
-      <div className="bg-white p-6 h-[35%]   rounded-lg shadow-md flex flex-col md:flex-row justify-between items-center">
+      {/* <div className="bg-white p-6 h-[35%]   rounded-lg shadow-md flex flex-col md:flex-row justify-between items-center">
         <div>
           <h3 className="text-lg font-semibold text-gray-700">
             Refer Us and Earn
@@ -137,7 +131,7 @@ const Overview = () => {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

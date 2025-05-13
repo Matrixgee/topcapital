@@ -7,6 +7,8 @@ const Topbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
   const location = useLocation();
   const isAdmin = location.pathname.includes("/admin");
 
+  const data = JSON.parse(localStorage.getItem("user") || "{}");
+
   return (
     <div className="border-b border-gray-200 p-4 flex items-center sticky top-0 z-30 w-full shadow-sm bg-white">
       {/* Mobile Menu */}
@@ -36,10 +38,10 @@ const Topbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
                 isAdmin ? "bg-indigo-100" : "bg-[#FFE6CC]"
               } text-black font-semibold rounded-full flex items-center justify-center text-sm`}
             >
-              {isAdmin ? "A" : "M"}
+              {isAdmin ? "A" : `${data.fullName[0].toUpperCase()}`}
             </div>
             <span className="text-sm text-gray-800 font-medium whitespace-nowrap">
-              {isAdmin ? "Admin Panel" : "Magnartis LTD"}
+              {isAdmin ? "Admin Panel" : `${data.fullName}`}
             </span>
             <IoIosArrowDown className="text-gray-600" />
           </div>

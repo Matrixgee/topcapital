@@ -9,7 +9,7 @@ import {
   Boxes,
   ScrollText,
 } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/toplogo.png";
 import { useLocation } from "react-router-dom";
 
@@ -31,6 +31,16 @@ const Sidebar = ({
 }) => {
   const location = useLocation();
   const isAdmin = location.pathname.includes("/admin");
+
+  const data = JSON.parse(localStorage.getItem("user") || "{}");
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    navigate("/auth/login");
+  };
 
   return (
     <>
@@ -153,16 +163,17 @@ const Sidebar = ({
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-white truncate">
-                John Doe
+                {data.fullName}
               </p>
-              <p className="text-xs text-gray-400 truncate">
-                john.doe@example.com
-              </p>
+              <p className="text-xs text-gray-400 truncate">{data.email}</p>
             </div>
           </div>
 
           <div className="flex items-center justify-center mt-4 ">
-            <div className="px-4 py-3 bg-white rounded-lg flex items-center gap-2">
+            <div
+              className="px-4 py-3 bg-white rounded-lg flex items-center gap-2"
+              onClick={handleLogout}
+            >
               <LogOut size={16} className="text-black" />
               <span className="text-xs text-black font-medium">Log out</span>
             </div>
