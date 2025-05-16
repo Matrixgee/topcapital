@@ -12,6 +12,9 @@ import {
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/toplogo.png";
 import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { clearUser } from "../global/userslice";
+import { clearAdmin } from "../global/adminslice";
 
 type NavItemProps = {
   to: string;
@@ -35,10 +38,13 @@ const Sidebar = ({
   const data = JSON.parse(localStorage.getItem("user") || "{}");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
+    dispatch(clearUser());
+    dispatch(clearAdmin());
     navigate("/auth/login");
   };
 

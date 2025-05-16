@@ -1,12 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import InputField from "../components/inputfield";
 import axios from "../config/axiosconfig";
 import toast from "react-hot-toast";
+import { setUser, setToken } from "../global/userslice";
+import { setAdmin, setAdminToken } from "../global/adminslice";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
@@ -20,11 +24,7 @@ const Login = () => {
     setLoading(true);
     setError("");
 
-    // Build payload dynamically
-    const payload: Record<string, string> = {
-      password,
-    };
-
+    const payload: Record<string, string> = { password };
     if (identifier.includes("@")) {
       payload.email = identifier;
     } else {
@@ -33,10 +33,25 @@ const Login = () => {
 
     try {
       const response = await axios.post("/user/login", payload);
-      toast.success("Login successful");
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", JSON.stringify(response.data.data));
-      navigate("/user/overview");
+
+      const { token, data } = response.data;
+
+      // ✅ Update Redux store
+      dispatch(setUser(data));
+      dispatch(setToken(token));
+      dispatch(setAdminToken(token));
+      dispatch(setAdmin(data));
+      // Local storage (optional backup)
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(data));
+
+      if (data?.isAdmin) {
+        navigate("/admin/allusers");
+        toast.success("Login successful, Welcome Admin");
+      } else {
+        navigate("/user/overview");
+        toast.success(`Login successful, Welcome ${data?.fullName}`);
+      }
     } catch (err: any) {
       const message =
         err.response?.data?.message || "Login failed. Please try again.";
@@ -62,7 +77,6 @@ const Login = () => {
         )}
 
         <form onSubmit={handleSubmit}>
-          {/* Username or Email */}
           <div className="mb-5">
             <InputField
               label="Username or Email"
@@ -77,7 +91,6 @@ const Login = () => {
             />
           </div>
 
-          {/* Password */}
           <div className="mb-6">
             <div className="flex justify-between items-center mb-2">
               <label className="block text-gray-200 text-sm font-medium">

@@ -16,6 +16,7 @@ import Adminlayout from "../layouts/adminlayout";
 import Allusers from "../Admin/allusers";
 import AllTransactions from "../Admin/alltransactions";
 import History from "../clients/history";
+import UserDetails from "../Admin/userdetails";
 
 export const Routes = createBrowserRouter([
   {
@@ -93,6 +94,10 @@ export const Routes = createBrowserRouter([
       {
         path: "alltransactions",
         element: <AllTransactions />,
+      },
+      {
+        path: "userdetails/:_id",
+        element: <UserDetails />,
       },
     ],
   },
