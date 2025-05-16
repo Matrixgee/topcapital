@@ -17,7 +17,7 @@ const CreditDebitModal: React.FC<CreditDebitModalProps> = ({
   _id,
 }) => {
   const [amount, setAmount] = useState<number | undefined>();
-  const [where, setWhere] = useState<string>("Account Balance");
+  const [field, setField] = useState<string>("Account Balance");
   const [creditLoading, setCreditLoading] = useState<boolean>(false);
   const dispatch = useDispatch();
   const userToken = useSelector((state: any) => state.user.token);
@@ -26,17 +26,17 @@ const CreditDebitModal: React.FC<CreditDebitModalProps> = ({
     setAmount(Number(e.target.value));
   };
 
-  const handleWhereChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setWhere(e.target.value);
+  const handlefieldChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setField(e.target.value);
   };
 
   const handleCreditDebitUser = async (type: string) => {
     if (
       !amount ||
-      (type !== "Credit" && type !== "Debit") ||
-      (where !== "Total Profit" &&
-        where !== "Account Balance" &&
-        where !== "Total Bonus")
+      (type !== "credit" && type !== "debit") ||
+      (field !== "totalProfit" &&
+        field !== "accountBalance" &&
+        field !== "totalBonus")
     ) {
       alert("All fields are required");
       return;
@@ -48,13 +48,13 @@ const CreditDebitModal: React.FC<CreditDebitModalProps> = ({
     const toastLoadingId = toast.loading("Please wait...");
     setCreditLoading(true);
     try {
-      const url = `/balance-update/${_id}`;
+      const url = `/admin/creditOrDebit/${_id}`;
       const token = userToken;
       const headers = {
         Authorization: `Bearer ${token}`,
       };
-      const data = { amount, type, where };
-      const response = await axios.post(url, data, { headers });
+      const data = { amount, type, field };
+      const response = await axios.put(url, data, { headers });
       dispatch(setAllUsers(response.data)); // Adjust according to your data structure
       toast.success(response.data.message);
       console.log(response.data);
@@ -84,28 +84,28 @@ const CreditDebitModal: React.FC<CreditDebitModalProps> = ({
           />
         </div>
         <div className="mb-4">
-          <label className="block font-medium">Where:</label>
+          <label className="block font-medium">field:</label>
           <select
             className="border p-2 rounded-md w-full"
-            value={where}
-            onChange={handleWhereChange}
+            value={field}
+            onChange={handlefieldChange}
           >
-            <option value="Account Balance">Account Balance</option>
-            <option value="Total Profit">Total Profit</option>
-            <option value="Total Bonus">Total Bonus</option>
+            <option value="accountBalance">Account Balance</option>
+            <option value="totalProfit">Total Profit</option>
+            <option value="totalBonus">Total Bonus</option>
           </select>
         </div>
         <div className="flex justify-end">
           <button
             className="py-2 px-4 bg-green-500 text-white rounded-md mr-2"
-            onClick={() => handleCreditDebitUser("Credit")}
+            onClick={() => handleCreditDebitUser("credit")}
             disabled={creditLoading}
           >
             Credit
           </button>
           <button
             className="py-2 px-4 bg-red-500 text-white rounded-md mr-2"
-            onClick={() => handleCreditDebitUser("Debit")}
+            onClick={() => handleCreditDebitUser("debit")}
             disabled={creditLoading}
           >
             Debit
