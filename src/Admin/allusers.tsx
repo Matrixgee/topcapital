@@ -4,14 +4,14 @@ import { Modal, Form } from "antd";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { RxTrackNext, RxTrackPrevious } from "react-icons/rx";
+import { useSelector } from "react-redux";
 
 interface User {
-  firstName: string;
-  lastName: string;
-  balance: string;
+  fullName: string;
+  accountBalance: string;
   email: string;
   status: string;
-  dateRegistered: string;
+  createdAt: string;
   _id: string;
 }
 
@@ -23,15 +23,16 @@ const AllUsers: React.FC = () => {
   const [allUsers, setAllUsers] = useState<User[]>([]);
 
   const navigate = useNavigate();
-  const userToken = localStorage.getItem("token"); // Store token locally if needed
 
-  const url = `${import.meta.env.VITE_DEVE_URL}/all-users`;
+  const adminToken = useSelector((state: any) => state.admin.token);
+
+  const url = `${import.meta.env.VITE_DEVE_URL}/user/getallusers`;
 
   const FetchUsers = async () => {
     try {
       const res = await axios.get(url, {
         headers: {
-          Authorization: `Bearer ${userToken}`,
+          Authorization: `Bearer ${adminToken}`,
         },
       });
       const users = res.data?.data ?? [];
@@ -120,25 +121,26 @@ const AllUsers: React.FC = () => {
               <tbody>
                 {currentUsers.map((user) => (
                   <tr key={user._id} className="hover:bg-gray-50 border-b">
+                    <td className="py-3 px-4">{user.fullName}</td>
                     <td className="py-3 px-4">
-                      {user.firstName} {user.lastName}
-                    </td>
-                    <td className="py-3 px-4">
-                      ${parseFloat(user.balance).toLocaleString()}
+                      ${parseFloat(user.accountBalance).toLocaleString()}
                     </td>
                     <td className="py-3 px-4">{user.email}</td>
                     <td className="py-3 px-4">
-                      {user.status === "Active" ? (
-                        <span className="bg-green-200 text-green-800 py-1 px-3 rounded-full text-xs">
+                      {user.status === "approved" ? (
+                        <span className="bg-green-200 text-green-800 uppercase py-1 px-3 rounded-full text-xs">
                           {user.status}
                         </span>
                       ) : (
-                        <span className="bg-red-200 text-red-800 py-1 px-3 rounded-full text-xs">
+                        <span className="bg-red-200 text-red-800 uppercase py-1 px-3 rounded-full text-xs">
                           {user.status}
                         </span>
                       )}
                     </td>
-                    <td className="py-3 px-4">{user.dateRegistered}</td>
+                    <td className="py-3 px-4">
+                      {new Date(user.createdAt).toLocaleString()}
+                    </td>
+
                     <td className="py-3 px-4">
                       <button
                         className="bg-[#050c1b] text-white px-4 py-1 rounded-md"
@@ -158,24 +160,24 @@ const AllUsers: React.FC = () => {
               <div>
                 <button
                   onClick={() => paginate(1)}
-                    disabled={currentPage === 1}
+                  disabled={currentPage === 1}
                   className="px-3 py-2 rounded-md bg-gray-200"
                 >
                   <RxTrackPrevious />
                 </button>
                 <button
                   onClick={() => paginate(currentPage - 1)}
-                    disabled={currentPage === 1}
+                  disabled={currentPage === 1}
                   className="px-3 py-2 rounded-md bg-gray-200 ml-2"
                 >
                   <RxTrackPrevious />
                 </button>
                 <button
                   onClick={() => paginate(currentPage + 1)}
-                    disabled={
-                      currentPage ===
-                      Math.ceil(allUsers.length ?? 0 / usersPerPage)
-                    }
+                  disabled={
+                    currentPage ===
+                    Math.ceil(allUsers.length ?? 0 / usersPerPage)
+                  }
                   className="px-3 py-2 rounded-md bg-gray-200 ml-2"
                 >
                   <RxTrackNext />

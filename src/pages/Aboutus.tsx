@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FaShieldAlt, FaChartLine, FaUserTie, FaGlobe } from "react-icons/fa";
+import logo from "../assets/toplogo.png";
 
 // import Logo from "../assets/dan 1.svg";
 
@@ -102,7 +103,7 @@ const AboutUs = () => {
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-pink-500/20 rounded-xl transform rotate-3" />
               <img
-                src=""
+                src={logo}
                 alt="Top logo"
                 className="relative z-10 max-w-md mx-auto"
               />

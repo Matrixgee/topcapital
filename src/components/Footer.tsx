@@ -1,5 +1,7 @@
 import { BsFacebook, BsTwitter, BsInstagram, BsLinkedin } from "react-icons/bs";
 
+import logo from "../assets/topcap svg logo.svg";
+
 const Footer = () => {
   return (
     <footer
@@ -8,8 +10,12 @@ const Footer = () => {
     >
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
         {/* Company Info */}
-        <div className="flex flex-col space-y-6">
-          <img src="" alt="Company Logo" className="w-40 h-auto" />
+        <div className="flex  flex-col space-y-2">
+          <img
+            src={logo}
+            alt="Company Logo"
+            className="w-full h-full object-cover"
+          />
           <div>
             <h2 className="font-bold text-xl mb-2">Location HQ</h2>
             <p className="text-gray-400">
