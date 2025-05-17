@@ -81,7 +81,7 @@ const Login = () => {
             <InputField
               label="Email"
               type="text"
-              placeholder="Enter your username or email"
+              placeholder="Enter your or email"
               value={identifier}
               onChange={(value) => {
                 setIdentifier(value);

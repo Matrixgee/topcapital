@@ -63,7 +63,7 @@ const ContactUs = () => {
     {
       icon: <FaPhoneAlt />,
       title: "Phone Number",
-      details: "+12248588466",
+      details: "+12248586687",
     },
     {
       icon: <FaEnvelope />,
