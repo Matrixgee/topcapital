@@ -16,6 +16,8 @@ const Overview = () => {
 
   const user = JSON.parse(localStorage.getItem("user") || "{}");
 
+  console.log(user);
+
   return (
     <div className="w-full h-[calc(100vh-5rem)] p-6 overflow-y-scroll scrollbar-thin scrollbar-hide ">
       {/* Welcome Message */}
@@ -33,9 +35,9 @@ const Overview = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         {[
           { title: "Available Balance", amount: ` $${user.accountBalance} ` },
-          { title: "Total Deposit", amount: `$${user.totalDeposit} ` },
+
           { title: "Total Profits", amount: `$${user.totalProfit} ` },
-          { title: "Total Interest", amount: `$${user.totalInterest} ` },
+          { title: "Total Bonus", amount: `$${user.referralBonus} ` },
         ].map((card, index) => (
           <div
             key={index}
