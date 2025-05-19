@@ -36,7 +36,7 @@ const CreditDebitModal: React.FC<CreditDebitModalProps> = ({
       (type !== "credit" && type !== "debit") ||
       (field !== "totalProfit" &&
         field !== "accountBalance" &&
-        field !== "totalBonus")
+        field !== "referalBonus")
     ) {
       alert("All fields are required");
       return;
@@ -92,7 +92,7 @@ const CreditDebitModal: React.FC<CreditDebitModalProps> = ({
           >
             <option value="accountBalance">Account Balance</option>
             <option value="totalProfit">Total Profit</option>
-            <option value="totalBonus">Total Bonus</option>
+            <option value="referalBonus">Total Bonus</option>
           </select>
         </div>
         <div className="flex justify-end">
